@@ -1,12 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import './index.css';
-import App from './App';
+// import './pages/about.css';
 import reportWebVitals from './reportWebVitals';
+import Contact from './pages/contact';
+import Login from './pages/login';
+import Header from './components/header/header'
+import SignIn from './pages/signIn';
+import Footer from './components/footer/footer';
+import Accueil from './pages/accueil';
+import About from './pages/about';
+import Welcome from './pages/welcome';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Header />
+      <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/accueil" component={Accueil}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/contact" component={Contact}/>
+        <Route path="/inscription" component={SignIn}/>
+        <Route path="/">
+          <Welcome/>
+        </Route>
+        <Route path="/*">
+          <Redirect to={{pathname: "/error"}}/>
+        </Route>
+      </Switch>
+    </Router>
+    <Footer />
   </React.StrictMode>,
   document.getElementById('root')
 );
